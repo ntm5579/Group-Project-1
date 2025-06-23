@@ -1,33 +1,36 @@
 const sp = new URLSearchParams(window.location.search);
 const id = sp.get('id');
 
-function buttonBuilder(targetspan, id, name, append = "") {
-    let span = document.getElementById(targetspan);
+function buttonBuilder(targetList, id, name) {
+    targetList = document.getElementById(targetList);
+    let li = document.createElement("li");
     let a = document.createElement("a");
-    let button = document.createElement("button");
     a.innerHTML = name;
-    if (targetspan === "characterSpan") {
-        a.href = `http://localhost:3000/character.html?id=${id}`
+    if (targetList.id === "characterList") {
+        a.href = `/character.html?id=${id}`;
     }
     else {
-        a.href = `http://localhost:3000/film.html?id=${id}`
+        a.href = `/film.html?id=${id}`;
     }
-    button.appendChild(a);
-    span.appendChild(button);
+    li.appendChild(a);
+    targetList.appendChild(li);
 
 }
 
 function updateHTML(fetched, append) {
     if (append === "") {
         let planet = fetched;
+        console.log(planet);
         document.getElementById("title").innerHTML = planet["name"];
+        document.getElementById("name").innerHTML = planet["name"];
+        //document.getElementById("title").innerHTML = planet["name"];
     }
     else {
         if (append === "/characters") {
             let characters = fetched;
             for (key in Object.keys(characters)) {
                 let character = characters[key];
-                buttonBuilder("characterSpan", character["id"], character["name"]);
+                buttonBuilder("characterList", character["id"], character["name"]);
             }
         }
         else {
@@ -35,7 +38,7 @@ function updateHTML(fetched, append) {
                 let films = fetched;
                 for (key in Object.keys(films)) {
                     let film = films[key];
-                    buttonBuilder("filmSpan", film["id"], film["title"]);
+                    buttonBuilder("filmList", film["id"], film["title"]);
                 }
             }
             else {
