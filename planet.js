@@ -22,8 +22,30 @@ function updateHTML(fetched, append) {
         let planet = fetched;
         console.log(planet);
         document.getElementById("title").innerHTML = planet["name"];
+
         document.getElementById("name").innerHTML = planet["name"];
-        //document.getElementById("title").innerHTML = planet["name"];
+
+        document.getElementById("population").innerHTML += planet["population"];
+        document.getElementById("climate").innerHTML += planet["climate"];
+        document.getElementById("terrain").innerHTML += planet["terrain"];
+        document.getElementById("surfaceWater").innerHTML += planet["surface_water"];
+
+        document.getElementById("diameter").innerHTML += planet["diameter"];
+        document.getElementById("gravity").innerHTML += planet["gravity"];
+        document.getElementById("orbital_period").innerHTML += planet["orbital_period"];
+        document.getElementById("rotation_period").innerHTML += planet["rotation_period"];
+
+        /*
+        <p id="population">Population: </p>
+        <p id="climate">Climate: </p>
+        <p id="terrain">Terrain: </p>
+        <p id="surfaceWater">Surface Water: </p>
+
+        <p id="diameter">Diameter:</p>
+        <p id="gravity"></p>
+        <p id="orbitalPeriod">Orbital Period</p>
+        <p id="rotationPeriod">Rotational Period</p>
+        */
     }
     else {
         if (append === "/characters") {
